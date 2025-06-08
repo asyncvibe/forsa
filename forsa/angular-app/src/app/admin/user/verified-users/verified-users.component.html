@@ -1,0 +1,29 @@
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Role</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let person of users" >
+        <td>{{ person.name }}</td>
+        <td>{{ person.email }}</td>
+        <td>{{ person.mobile }}</td>
+        <td>{{ person.role }}</td>
+        <td><a (click)="deleteUser(person._id)" id="delete"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+          <a (click)="userDetails(person._id,person.role)"><i class="fa fa-eye fa-2x"></i></a>
+          <a (click)="editUser(person._id)"><i class="fa fa-edit fa-2x"></i></a>
+
+        </td>
+
+   
+      <!-- <td><a (click) = "verifyUser(person._id)"><button type="button" class="btn btn-success"><b>Verify</b></button></a> -->
+
+      <!-- </td> -->
+    </tr>
+  </tbody>
+</table>

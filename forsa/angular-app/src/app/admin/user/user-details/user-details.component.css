@@ -1,0 +1,10 @@
+/* .col-md-9{
+    margin-left: 10%;
+} */
+.box-header{
+    cursor: pointer;
+}
+.btn-success{
+    float: right;
+    margin-right: 30%;
+}

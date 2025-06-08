@@ -1,0 +1,68 @@
+/* .content{
+    margin-left: 15%;
+} */
+.btn-success{
+    float: right;
+}
+.post{
+    padding: 25px;
+}
+hr{
+    padding: 30px;
+}
+.btn:focus, .btn:active, button:focus, button:active {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  
+  #image-gallery .modal-footer{
+    display: block;
+  }
+  
+  .thumb{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  #gallery{
+      padding: 35px;
+  }
+
+  .img-thumbnail{
+    height: 155px;
+    width: 230px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .images{
+    display: inline-block;
+  }
+
+  .btn-bs-file{
+    position:relative;
+}
+.btn-bs-file input[type="file"]{
+    position: absolute;
+    top: -9999999;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    width:0;
+    height:0;
+    outline: none;
+    cursor: inherit;
+}
+
+.btn-lg{
+    float: left !important;
+}
+
+.fa-trash{
+    position: absolute;
+    margin-left: -35px;
+    /* float: right; */
+    margin-right: 0px;
+    margin-right: 100px;
+    margin-top: 25px;
+    color: rgb(238, 8, 8);
+    font-size: 2rem
+}

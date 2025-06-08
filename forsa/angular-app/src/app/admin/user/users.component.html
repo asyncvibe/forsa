@@ -1,0 +1,67 @@
+<!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Role</th>
+      <th>Status</th>
+      <th>Created At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let person of users">
+    <tr>
+      <td><b>{{ person.name }}</b> </td>
+      <td><b>{{ person.email }}</b> </td>
+      <td> <b>{{ person.mobile }}</b></td>
+      <td><b>{{ person.role }}</b> </td>
+      <td *ngIf="person.verify== true"><b>Verified</b> </td>
+      <td *ngIf="person.verify== false"><b>Unverified</b> </td>
+      <td><b>{{ person.createdAt |date:"MM/dd/yy" }}</b></td>
+      <td><a (click)="deleteUser(person._id)" id="delete"><i class="fa fa-trash fa-2x" aria-hidden="true"
+            ></i></a>
+        <a (click)="userDetails(person._id,person.role)"><i class="fa fa-eye fa-2x"></i></a>
+        <a (click)="editUser(person._id)"><i class="fa fa-edit fa-2x"></i></a>
+
+
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+
+
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Role</th>
+      <th>Status</th>
+      <th>Created At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let person of users" >
+      <td><b>{{ person.name }}</b> </td>
+      <td><b>{{ person.email }}</b> </td>
+      <td> <b>{{ person.mobile }}</b></td>
+      <td><b>{{ person.role }}</b> </td>
+      <td *ngIf="person.verify== true"><b>Verified</b> </td>
+      <td *ngIf="person.verify== false"><b>Unverified</b> </td>
+      <td><b>{{ person.createdAt |date:"MM/dd/yy" }}</b></td>
+      <td><a (click)="deleteUser(person._id)" id="delete"><i class="fa fa-trash fa-2x" aria-hidden="true"
+            ></i></a>
+        <a (click)="userDetails(person._id,person.role)"><i class="fa fa-eye fa-2x"></i></a>
+        <a (click)="editUser(person._id)"><i class="fa fa-edit fa-2x"></i></a>
+
+
+      </td>
+
+   
+   
+    </tr>
+  </tbody>
+</table>

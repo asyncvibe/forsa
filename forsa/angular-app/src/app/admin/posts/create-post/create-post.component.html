@@ -1,0 +1,233 @@
+<section class="content" >
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-8">
+      <!-- general form elements -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Create New Post</h3>
+        </div>
+        <!-- [formGroup]="profileForm" (ngSubmit)="onSubmit()" -->
+        <form role="form" [formGroup]="createPostForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="box-body">
+                  <div class="form-group">
+                      <label> Property Type</label>
+                      <!-- <select class="form-control" formControlName=.propertyType" (change)="selectedCategory($event)"
+                        required> -->
+                        <select class="form-control" formControlName="propertyType" (change)="PropertyTypeSelect($event)"
+                        required>
+                        <!-- <option>Please Select Category</option> -->
+                        <option>Commercial</option>
+                        <option>Residential</option>
+                        <!-- <option>Penthouse</option>
+                        <option>Compounds</option>
+                        <option>Villas</option> -->
+                      </select>
+                      <div *ngIf="f.propertyType.invalid && (f.propertyType.dirty || f.propertyType.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="f.propertyType.errors.required">
+                          Property Type is required.
+                        </div>
+                      </div>
+                    </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Address</label>
+                  <input type="text" class="form-control" placeholder="Enter address" formControlName="address" required>
+                  <div *ngIf="f.address.invalid && (f.address.dirty || f.address.touched)" class="alert alert-danger">
+                    <div *ngIf="f.address.errors.required">
+                      Address is required.
+                    </div>
+                    <div *ngIf="f.address.errors.minlength">
+                      Address should be 6 characters long.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" *ngIf="categoryType == 'Residential'">
+                    <label>No. of Beds</label>
+                    <input type="number" class="form-control" placeholder="Enter No. of Beds" formControlName="bedRooms">
+                    <!-- <div *ngIf="f.bedRooms.invalid && (f.bedRooms.dirty || f.bedRooms.touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="f.bedRooms.errors.required">
+                        No. of beds are required.
+                      </div>
+                    </div> -->
+                  </div>
+
+                <!-- <div class="form-group">
+                  <label>Created By</label>
+                  <input type="text" class="form-control" placeholder="Enter Name" formControlName="createdBy" required>
+                  <div *ngIf="f.createdBy.invalid && (f.createdBy.dirty || f.createdBy.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="f.createdBy.errors.required">
+                      Creator Name is required.
+                    </div>
+                  </div>
+                </div> -->
+               
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Purpose</label>
+                  <select class="form-control" formControlName="purpose" required >
+                    <!-- <option>Please Select Purpose</option> -->
+                    <option>Rent</option>
+                    <option>Sale</option>
+                  </select>
+                  <div *ngIf="f.purpose.invalid && (f.purpose.dirty || f.purpose.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="f.purpose.errors.required">
+                       Purpose for this ad is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Description</label>
+                    <textarea class="form-control" rows="5" placeholder="Enter the Description..."
+                      formControlName="summary" required></textarea>
+                    <div *ngIf="f.summary.invalid && (f.summary.dirty || f.summary.touched)" class="alert alert-danger">
+                      <div *ngIf="f.summary.errors.required">
+                        Description is required.
+                      </div>
+                    </div>
+                  </div>
+                <!-- <div class="form-group">
+                  <label>Created As</label>
+                  <select class="form-control" formControlName="role" required>
+                   
+                    <option>Admin</option>
+                    <option>Landlord</option>
+                   
+                  </select>
+                  <div *ngIf="f.role.invalid && (f.role.dirty || f.role.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="f.role.errors.required">
+                       'Created As' is required.
+                    </div>
+                  </div>
+                </div> -->
+               
+
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Area</label>
+                  <input type="text" class="form-control" placeholder="Enter area with unit" formControlName="area" required>
+                  <div *ngIf="f.area.invalid && (f.area.dirty || f.area.touched)" class="alert alert-danger">
+                    <div *ngIf="f.area.errors.required">
+                      Area is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Price</label>
+                  <div class="form-group">
+                    <!-- <span class="input-group-addon"><i class="fa fa-dollar"></i></span> -->
+                    <input type="text" class="form-control" placeholder="Enter Price with currency" formControlName="price" >
+                  </div>
+                  <div *ngIf="f.price.invalid && (f.price.dirty || f.price.touched)" class="alert alert-danger">
+                    <div *ngIf="f.price.errors.required">
+                      Price is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group" *ngIf="categoryType == 'Residential'">
+                  <label>Residential Types</label>
+                  <!-- <select class="form-control" formControlName=.propertyType" (change)="selectedCategory($event)"
+                    required> -->
+                    <select class="form-control" formControlName="subCategoryType" 
+                    required>
+                    <!-- <option>Please Select Category</option> -->
+                    <option>House</option>
+                    <option>Apartment</option>
+                    <!-- <option>Penthouse</option>
+                    <option>Compounds</option>
+                    <option>Villas</option> -->
+                  </select>
+                </div>
+                <div class="form-group" *ngIf="categoryType == 'Commercial'">
+                  <label>Commercial Types</label>
+                  <!-- <select class="form-control" formControlName=.propertyType" (change)="selectedCategory($event)"
+                    required> -->
+                    <select class="form-control" formControlName="subCategoryType" 
+                    required>
+                    <!-- <option>Please Select Category</option> -->
+                    <option>Office</option>
+                    <option>Shop</option>
+                    <!-- <option>Penthouse</option>
+                    <option>Compounds</option>
+                    <option>Villas</option> -->
+                  </select>
+                </div>
+                <div class="form-group" >
+                    <label>No. of Baths</label>
+                    <input type="number" class="form-control" placeholder="Enter No. of Baths" formControlName="bathRooms" min="1">
+                    <!-- <div *ngIf="f.bedRooms.invalid && (f.bedRooms.dirty || f.bedRooms.touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="f.bedRooms.errors.required">
+                        No. of beds are required.
+                      </div>
+                    </div> -->
+                  </div>
+                
+                <!-- <div class="form-group">
+                  <label>Select Role</label>
+                  <select class="form-control">
+                    <option>Please Select Role</option>
+                    <option>Customer</option>
+                    <option>Landlord</option>
+                    <option>Broker</option>
+                  </select>
+                </div> -->
+                <!-- <div class="form-group">
+                  <label for="exampleInputFile">Choose Image</label>
+                  <input type="file" id="exampleInputFile" (change)="uploadImage($event)">
+                </div> -->
+                <div class="form-group">
+                    <label for="exampleInputFile">Choose Image</label>
+                    <input type="file" id="exampleInputFile" (change)="uploadImage($event)" multiple
+                      formControlName="covers" required>
+                    <div *ngIf="f.covers.invalid && (f.covers.dirty || f.covers.touched)" class="alert alert-danger">
+                      <div *ngIf="f.covers.errors.required">
+                        Images are required.
+                      </div>
+                    </div>
+                  </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" formControlName="isFurnished"> <b>Is Furnished</b>
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" formControlName="isFeatured"> <b>Is Featured</b>
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" formControlName="status"> <b>Is Active</b>
+                  </label>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="box-footer">
+            <button type="submit" [disabled]="!createPostForm.valid" class="btn btn-success">Submit</button>
+          </div>
+        </form>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-6">
+      <div class="box box-default">
+        <div class="box-header with-border">
+            <i class="fa fa-bell"></i>
+
+          <h3 class="box-title">Notifications</h3>
+        </div>
+      
+        <div class="box-body" *ngFor = "let noti of notifications">
+          <div class="alert alert-info alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-info"></i> {{noti.title}}!</h4>
+            <b>{{noti.userName}} has joined</b>
+          </div>
+        </div>
+        <!-- <div class="box-body" *ngFor = "let noti of featuredPending">
+            <div class="alert alert-info alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h4><i class="icon fa fa-info"></i> {{noti.title}}!</h4>
+              <b>{{noti.createdBy}} has created Featured Request for {{noti.title}}</b>
+            </div>
+          </div> -->
+        
+      </div>
+     
+    </div>
+    
+  </div>

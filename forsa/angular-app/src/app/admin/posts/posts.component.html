@@ -1,0 +1,176 @@
+<div class="col-md-12">
+  <!-- Custom Tabs -->
+  <div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab_1" data-toggle="tab"><b>All Posts</b> </a></li>
+      <li><a href="#tab_2" data-toggle="tab"><b>Create Post</b></a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab_1">
+        <div class="row" id="posts">
+          <div class="col-md-6">
+            <div class="box box-solid">
+              <div class="box-header with-border">
+                <!-- <h3 class="box-title">Collapsible Accordion</h3> -->
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div class="box-group" id="accordion">
+                  <div class="panel box box-primary" *ngFor="let post of property; index as i">
+                    <div class="box-header with-border collapsed" area-expended=false>
+                      <h4 class="box-title">
+                        <a data-parent="#accordion">
+                          <div class="row">
+                            <div class="col-sm-6 col-md-3" [attr.data-target]="'#collapse'+i" data-toggle="collapse">
+                              <h5 class="mb-0">
+                                Title: <b>{{post.title}}</b>
+                              </h5>
+                            </div>
+                            <div class="col-sm-6 col-md-3" [attr.data-target]="'#collapse'+i" data-toggle="collapse">
+                              <h5 class="mb-0">
+                                Area: <b>{{post.area}}</b>
+                              </h5>
+                            </div>
+                            <div class="col-sm-6 col-md-3" [attr.data-target]="'#collapse'+i" data-toggle="collapse">
+                              <h5 class="mb-0">
+                                Featured: <b>{{post.isFeatured}}</b>
+                              </h5>
+                            </div>
+
+                            <div class="col-sm-4 col-md-2" [attr.data-target]="'#collapse'+i" data-toggle="collapse">
+                              <h5 class="mb-0">
+                                <img src="{{backendUrl}}/{{post?.covers[0]}}" id="imgProfile"
+                                  style="width: 60px; height: 40px" />
+                              </h5>
+                            </div>
+                            <div class="col-sm-3 col-md-1">
+                              <h5 class="mb-0">
+
+                                <label>
+                                  <input type="checkbox" class="minimal" (change)="onChange(post._id)">
+                                </label>
+                              </h5>
+                            </div>
+
+                          </div>
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse{{i}}" class="panel-collapse collapse">
+                      <div class="box-body">
+
+                        <div class="col-md-12">
+                          <p class="lead"><b>Property Details</b></p>
+
+                          <div class="table-responsive">
+                            <table class="table">
+                              <tr>
+                                <th style="width:80%">Area:</th>
+                                <td><b>{{post.area}}</b> </td>
+                              </tr>
+                              <tr>
+                                <th>Created By:</th>
+                                <td><b>{{post.createdBy}}</b></td>
+                              </tr>
+                              <tr *ngIf="post.isFeatured == true">
+                                <th>Featured:</th>
+                                <td><b>Yes</b></td>
+                              </tr>
+                              <tr *ngIf="post.isFeatured == false">
+                                <th>Featured:</th>
+                                <td><b>No</b></td>
+                              </tr>
+                              <tr *ngIf="post.isFurnished == true">
+                                <th>Furnished:</th>
+                                <td> <b>Yes</b></td>
+                              </tr>
+                              <tr *ngIf="post.isFurnished == false">
+                                <th>Furnished:</th>
+                                <td> <b>No</b></td>
+                              </tr>
+                              <tr>
+                                <th>Purpose:</th>
+                                <td> <b>{{post.purpose}}</b></td>
+                              </tr>
+                              <tr>
+                                <th>Summary:</th>
+                                <td> <b>{{post.summary}}</b></td>
+                              </tr>
+                              <tr>
+                                <th>Purpose:</th>
+                                <td> <b>{{post.purpose}}</b></td>
+                              </tr>
+                              <tr>
+                                <th>Category:</th>
+                                <td> <b>{{post.type}}</b></td>
+                              </tr>
+
+                            </table>
+                            <a [routerLink]="['/admin/updatepost', post._id]">
+                              <button type="submit" class="btn btn-success">Update</button>
+                            </a>
+                            <a>
+                              <button type="submit" class="btn btn-danger">Delete</button>
+                            </a>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+
+            </div>
+
+            <td *ngIf="selectedIdsArray.length > 0">
+              <button type="button" class="btn btn-block btn-success btn-lg" (click)="assignTo()" data-toggle="modal"
+                data-target="#modal-default">Assign To</button>
+            </td>
+          </div>
+
+
+          <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title"><b>Brokers List</b></h4>
+                </div>
+                <div class="modal-body">
+                  <!-- <p>One fine body&hellip;</p> -->
+                  <div *ngFor="let list of lists; index as i">
+                    <b>
+                      <a (click)="assignPostsToUser(list._id)"><b>{{list.name}}</b> </a>
+                    </b>
+                    <hr>
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                  <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+        </div>
+
+      </div>
+      <!-- /.tab-pane -->
+      <div class="tab-pane" id="tab_2">
+        <app-create-post></app-create-post>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+</div>

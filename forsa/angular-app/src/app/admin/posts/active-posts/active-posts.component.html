@@ -1,0 +1,44 @@
+<!-- <div class="row">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <label >Start Date</label>
+                    <input type="date"  formControlName="startDate" placeholder="start date"> -
+              <label>End Date</label>
+                   <input type="date"   formControlName="endDate" placeholder="end date">
+                   <a (click)="onSubmit()"><i class="fa fa-search fa-2x"></i></a>
+</form>
+</div> -->
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead>
+    <tr>
+      <!-- <th>Title</th> -->
+      <!-- <th>Created By</th> -->
+      <th>Price</th>
+      <th>Status</th>
+      <th>Purpose</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of activePosts">
+      <!-- <td><b>{{ post.title | titlecase }}</b></td> -->
+      <!-- <td><b>{{ post.createdBy | titlecase }}</b></td> -->
+      <td><b>{{ post.price  }}</b></td>
+      <td *ngIf="post.status == true"><b>Active</b></td>
+      <!-- <td *ngIf="post.isFurnished == ''"><b>Not Furnished</b></td> -->
+      <td ><b>{{post.purpose | titlecase}}</b></td>
+      <td><a (click)="deleteProperty(post._id)" id="delete"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+        <a [routerLink]="['/admin/postdetails',post._id]"><i class="fa fa-eye fa-2x"></i></a>
+        <a [routerLink]="['/admin/updatepost', post._id]"><i class="fa fa-edit fa-2x"></i></a>
+        <!-- <a (click)="approvePost(post._id)"><i class="fa fa-check fa-2x"></i></a> -->
+        <!-- <label>
+          <input type="checkbox" class="minimal" (change)="onChange(post._id)">
+        </label> -->
+
+       
+      </td>
+      <!-- <td><a (click) = "verifyUser(post._id)"><button type="button" class="btn btn-success"><b>Verify</b></button></a> -->
+
+      <!-- </td> -->
+    </tr>
+  </tbody>
+</table>

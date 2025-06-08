@@ -1,0 +1,34 @@
+a{
+    margin-left: 15px;
+    cursor: pointer;
+}
+.fa-edit{
+    color: green !important;
+    
+}
+#delete{
+    color: red;
+}
+table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+    display: block;
+    font-family: 'Glyphicons Halflings';
+    opacity: 0.5;
+}
+
+.pull-right {
+    float: right!important;
+    display: none !important;
+}
+
+/* .sorting_asc[_ngcontent-pll-c3]:after, table.dataTable[_ngcontent-pll-c3] thead[_ngcontent-pll-c3] .sorting_desc[_ngcontent-pll-c3]:after, table.dataTable[_ngcontent-pll-c3] thead[_ngcontent-pll-c3] .sorting_asc_disabled[_ngcontent-pll-c3]:after, table.dataTable[_ngcontent-pll-c3] thead[_ngcontent-pll-c3] .sorting_desc_disabled[_ngcontent-pll-c3]:after {
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+    display: block;
+    font-family: 'Glyphicons Halflings';
+    opacity: 0.5;
+    display: none;
+} */

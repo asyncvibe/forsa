@@ -1,0 +1,86 @@
+<div class="row">
+
+  <!-- /.col -->
+  <div class="row" id="gallery">
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-xs-6 thumb" *ngFor="let cover of covers; index as i">
+        <a>
+          <img class="img-thumbnail" src="{{backendUrl}}/{{covers[i]}}" alt="Another alt text" height="140" width="230">
+          <!-- <span class="fa fa-trash"  (click)="deleteImage(cover)"></span> -->
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="col-md-12">
+    <p class="lead"><b>Property Details</b></p>
+
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th style="width:30%">Area:</th>
+          <td><b>{{post.area}}</b> </td>
+        </tr>
+        <tr>
+          <th>Created By:</th>
+          <td><a [routerLink]="['/admin/userdetails',post.userId,post.role]"><b>Owner Profile</b></a></td>
+        </tr>
+        <tr *ngIf="post.isFeatured == 'true'">
+          <th>Featured:</th>
+          <td><b>Yes</b></td>
+        </tr>
+        <tr *ngIf="post.isFeatured == ''">
+          <th>Featured:</th>
+          <td><b>No</b></td>
+        </tr>
+        <tr *ngIf="post.isFurnished == 'true'">
+          <th>Furnished:</th>
+          <td> <b>Yes</b></td>
+        </tr>
+        <tr *ngIf="post.isFurnished == ''">
+          <th>Furnished:</th>
+          <td> <b>No</b></td>
+        </tr>
+        <tr>
+          <th>Purpose:</th>
+          <td> <b>{{post.purpose}}</b></td>
+        </tr>
+        <tr>
+          <th>Summary:</th>
+          <td> <b>{{post.summary}}</b></td>
+        </tr>
+        <tr>
+          <th>Purpose:</th>
+          <td> <b>{{post.purpose}}</b></td>
+        </tr>
+        <tr>
+          <th>Property Type:</th>
+          <td> <b>{{post.propertyType}}</b></td>
+        </tr>
+        <tr>
+          <th>Sub Category:</th>
+          <td> <b>{{post.subCategoryType}}</b></td>
+        </tr>
+        <tr *ngIf="post.bedRooms != 'null'">
+          <th >Bed Rooms:</th>
+          <td> <b>{{post.bedRooms}}</b></td>
+        </tr>
+        <tr>
+          <th>Baths:</th>
+          <td> <b>{{post.bathRooms}}</b></td>
+        </tr>
+
+      </table>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <a (click)="onDelete(post._id)"><button class="btn btn-danger">Remove</button></a>
+      <a [routerLink]="['/admin/updatepost', post._id]"> <button class="btn btn-success">Update</button></a>
+    </div>
+  </div>
+
+</div>

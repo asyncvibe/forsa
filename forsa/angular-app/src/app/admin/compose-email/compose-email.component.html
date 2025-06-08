@@ -1,0 +1,61 @@
+<div class="col-md-12">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Compose New Email</h3>
+      </div>
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <div class="box-body">
+              <div class="form-group">
+                <input class="form-control" placeholder="To:" formControlName="to" required>
+                <div *ngIf="f.to.invalid && (f.to.dirty || f.to.touched)" class="alert alert-warning">
+                  <div *ngIf="f.to.errors.required">
+                    Email is required.
+                  </div>
+                  <div *ngIf="f.to.errors.email">
+                    Please enter a valid email.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input class="form-control" placeholder="Subject:" formControlName="subject" required>
+                <div *ngIf="f.subject.invalid && (f.subject.dirty || f.subject.touched)" class="alert alert-warning">
+
+                  <div *ngIf="f.subject.errors.required">
+                    Subject is required.
+                  </div>
+                  <div *ngIf="f.subject.errors.minlength">
+                    Subject must be at least 6 characters long.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                    <textarea id="compose-textarea" class="form-control" style="height: 300px" formControlName="html" required>
+                      <h1><u>Heading Of Message</u></h1>
+                      <h4>Subheading</h4>
+                      <p>Text of the email goes here..</p>
+                     
+                      <p>Thank you,</p>
+                      <p>your Name</p>
+                    </textarea>
+                    <div *ngIf="f.html.invalid && (f.html.dirty || f.html.touched)" class="alert alert-warning">
+
+                      <div *ngIf="f.html.errors.required">
+                        Email body can't be empty.
+                      </div>
+                      <div *ngIf="f.html.errors.minlength">
+                        Email body should be atleast 10 characters long.
+                      </div>
+                    </div>
+              </div>
+            </div>
+            <div class="box-footer">
+              <div class="pull-right">
+                
+                <button type="submit" class="btn btn-primary" [disabled]="!profileForm.valid"><i class="fa fa-envelope-o"></i> Send</button>
+              </div>
+              
+            </div>
+      </form>
+     
+    </div>
+  </div>

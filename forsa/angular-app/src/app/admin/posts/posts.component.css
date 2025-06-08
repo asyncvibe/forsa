@@ -1,0 +1,23 @@
+.box-title, .col-md-6 {
+    width: 100%;
+}
+
+.box-header {
+    padding: 0px !important;
+}
+#dropdown{
+    width: 50%;
+}
+
+a{
+cursor: pointer;
+}
+#posts{
+    margin-top: 30px;
+}
+.btn-danger{
+    float: left;
+}
+.btn-success{
+    float: right;
+}

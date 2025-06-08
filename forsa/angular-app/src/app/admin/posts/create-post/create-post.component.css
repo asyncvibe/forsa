@@ -1,0 +1,14 @@
+.content{
+    margin-left: 20%;
+}
+.btn-success{
+    float: right;
+}
+table.dataTable {
+    width: 100%;
+    margin: 0 auto;
+    clear: both;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: center !important;
+}

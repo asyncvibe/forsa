@@ -1,0 +1,31 @@
+#image-gallery .modal-footer{
+    display: block;
+  }
+  
+  .thumb{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  #gallery{
+      padding: 35px;
+  }
+
+  .img-thumbnail{
+    height: 155px;
+    width: 230px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .images{
+    display: inline-block;
+  }
+  a{
+    cursor: pointer;
+  }
+  .btn-success{
+    float: right;
+  }
+  .col-md-6{
+    padding: 30px;
+  }

@@ -1,0 +1,14 @@
+.box-title, .col-md-6 {
+    width: 100%;
+}
+
+.box-header {
+    padding: 0px !important;
+}
+#dropdown{
+    width: 50%;
+}
+
+a{
+cursor: pointer;
+}

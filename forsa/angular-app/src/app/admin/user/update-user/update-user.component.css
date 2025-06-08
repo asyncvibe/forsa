@@ -1,0 +1,22 @@
+.content{
+    margin-left: 20%;
+}
+.col-md-6{
+    width: 70%;
+}
+.btn-success{
+    float: right;
+}
+.image{
+    margin-left: 30%;
+}
+.image-upload{
+    margin-top: 20px;
+    margin-left: 43%;
+}
+.rounded-circle{
+    border-radius: 50%;
+}
+.imageClass{
+    margin-bottom: 40px;
+}

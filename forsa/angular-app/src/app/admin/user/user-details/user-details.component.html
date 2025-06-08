@@ -1,0 +1,282 @@
+<div class="col-md-12">
+  <!-- Custom Tabs -->
+  <div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab_1" data-toggle="tab"><b>Profile</b> </a></li>
+      <li *ngIf="userRole == 'Broker'"><a href="#tab_2" data-toggle="tab"><b>Assigned Posts</b> </a></li>
+      <li *ngIf="userRole == 'Customer'"><a href="#customer_tab" data-toggle="tab"><b>Favorite Posts</b> </a></li>
+      <li *ngIf="userRole == 'Landlord'"><a href="#landlord_tab" data-toggle="tab"><b>User's Created Posts</b> </a></li>
+      <!-- <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li> -->
+
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab_1">
+        <div class="row" *ngFor="let person of person">
+          <div class="col-md-12">
+
+            <div class="box box-widget widget-user-2">
+
+              <div class="widget-user-header bg-yellow">
+                <div class="widget-user-image">
+                  <img class="img-circle" src="{{backendUrl}}/{{person.image}}" alt="User Avatar">
+                </div>
+
+                <h3 class="widget-user-username"><b>{{person.name}}</b></h3>
+                <h5 class="widget-user-desc">{{person.role}}</h5>
+              </div>
+              <div class="box-footer no-padding">
+                <ul class="nav nav-stacked">
+                  <li *ngIf="person.verify == false"><a><b>Verified</b> <span
+                        class="pull-right badge bg-red">No</span></a></li>
+                  <li *ngIf="person.verify == true"><a><b>Verified</b> <span
+                        class="pull-right badge bg-green">Yes</span></a></li>
+                  <li><a><b>Member Since</b> <span
+                        class="pull-right badge bg-aqua">{{person.createdAt | date:format}}</span></a></li>
+                  <li><a><b>Email</b> <span class="pull-right badge bg-green">{{person.email}}</span></a></li>
+                  <li><a><b>Mobile</b> <span class="pull-right badge bg-green">{{person.mobile}}</span></a></li>
+                  <li *ngFor="let list of person.assignedLists"><a><b>Lists</b> <span
+                        class="pull-right badge bg-green">{{person.assignedLists}}</span></a></li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- /.tab-pane -->
+      <div class="tab-pane" id="tab_2">
+        <p *ngIf="brokerPosts?.length == 0"> No post has been assigned to this broker</p>
+        <div class="row" *ngIf="brokerPosts?.length > 0">
+          <div class="col-md-12">
+            <div class="box box-solid">
+              <!-- <div class="box-header with-border">
+                      <h3 class="box-title"></h3>
+                    </div> -->
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div class="box-group" id="accordion">
+                  <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                  <div class="panel box box-primary" *ngFor="let post of brokerPosts; index as i">
+                    <div class="box-header with-border" [attr.data-target]="'#collapse'+i" data-toggle="collapse">
+                      <h4 class="box-title">
+                        <div class="user-block">
+                          <img class="img-circle" src="{{backendUrl}}/{{brokerPosts[i].covers[0]}}" alt="User Image">
+                          <!-- <img class="img-circle" src="{{backendUrl}}/{{post.covers[0]}}" alt="User Image"> -->
+                          <span class="username"><a href="#">{{post.title}}</a></span>
+                          <span class="description">Created At: {{post.createdAt | date:format}}</span>
+                        </div>
+                      </h4>
+                    </div>
+                    <div id="collapse{{i}}" class="panel-collapse collapse">
+                      <div class="box-body">
+                        <div class="col-md-12">
+
+                          <div class="row" id="gallery">
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 col-xs-6 thumb" *ngFor="let cover of covers; index as i">
+                                <a>
+                                  <img class="img-thumbnail" src="{{backendUrl}}/{{covers[i]}}" alt="Another alt text"
+                                    height="140" width="230">
+                                  <!-- <span class="fa fa-trash"  (click)="deleteImage(cover)"></span> -->
+                                </a>
+                              </div>
+                            </div>
+
+                          </div>
+
+                        </div>
+                        <div class="col-md-12">
+                          <p class="lead"><b>Property Details</b></p>
+
+                          <div class="table-responsive">
+                            <table class="table">
+                              <tr>
+                                <th style="width:80%">Area:</th>
+                                <td><b>{{post.area}}</b> </td>
+                              </tr>
+                              <tr>
+                                <th>Created By:</th>
+                                <td><b>{{post.createdBy}}</b></td>
+                              </tr>
+                              <tr *ngIf="post.isFeatured == true">
+                                <th>Featured:</th>
+                                <td><b>Yes</b></td>
+                              </tr>
+                              <tr *ngIf="post.isFeatured == false">
+                                <th>Featured:</th>
+                                <td><b>No</b></td>
+                              </tr>
+                              <tr *ngIf="post.isFurnished == true">
+                                <th>Furnished:</th>
+                                <td> <b>Yes</b></td>
+                              </tr>
+                              <tr *ngIf="post.isFurnished == false">
+                                <th>Furnished:</th>
+                                <td> <b>No</b></td>
+                              </tr>
+                              <tr>
+                                <th>Purpose:</th>
+                                <td> <b>{{post.purpose}}</b></td>
+                              </tr>
+                              <tr>
+                                <th>Summary:</th>
+                                <td> <b>{{post.summary}}</b></td>
+                              </tr>
+                              <tr>
+                                <th>Purpose:</th>
+                                <td> <b>{{post.purpose}}</b></td>
+                              </tr>
+
+                            </table>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <a (click)="onDelete(post._id)"><button class="btn btn-danger">Remove</button></a>
+                            </div>
+                            <div class="col-md-6">
+                              <a  (click)="updatePost(post._id)"><button
+                                  class="btn btn-success">Update</button></a>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+          <!-- /.col -->
+
+          <!-- /.col -->
+        </div>
+
+
+      </div>
+      <div class="tab-pane" id="customer_tab">
+        <p>Customer data will populate here</p>
+      </div>
+      <div class="tab-pane" id="landlord_tab">
+        <span *ngIf="userPosts?.length == 0">No post has been created by this landlord</span>
+        <div class="row" *ngIf="userPosts?.length > 0">
+          <div class="col-md-12">
+            <div class="box box-solid">
+              <!-- <div class="box-header with-border">
+                      <h3 class="box-title"></h3>
+                    </div> -->
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div class="box-group" id="accordion">
+                  <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                  <div class="panel box box-primary" *ngFor="let post of userPosts; index as i">
+                    <div class="box-header with-border" [attr.data-target]="'#collapse'+i" data-toggle="collapse">
+                      <h4 class="box-title">
+                        <div class="user-block">
+                          <img class="img-circle" src="{{backendUrl}}/{{userPostCovers[0]}}" alt="User Image">
+                          <!-- <img class="img-circle" src="{{backendUrl}}/{{post.covers[0]}}" alt="User Image"> -->
+                          <span class="username"><a href="#">{{post.title}}</a></span>
+                          <span class="description">Created At: {{post.createdAt | date:format}}</span>
+                        </div>
+                      </h4>
+                    </div>
+                    <div id="collapse{{i}}" class="panel-collapse collapse">
+                      <div class="box-body">
+                        <div class="col-md-12">
+
+                          <div class="row" id="gallery">
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 col-xs-6 thumb"
+                                *ngFor="let cover of userPostCovers; index as i">
+                                <a>
+                                  <img class="img-thumbnail" src="{{backendUrl}}/{{userPostCovers[i]}}"
+                                    alt="Another alt text" height="140" width="230">
+                                  <!-- <span class="fa fa-trash"  (click)="deleteImage(cover)"></span> -->
+                                </a>
+                              </div>
+                            </div>
+
+                          </div>
+
+                        </div>
+                        <div class="col-md-12">
+                          <p class="lead"><b>Property Details</b></p>
+
+                          <div class="table-responsive">
+                            <table class="table">
+                              <tr>
+                                <th style="width:80%">Area:</th>
+                                <td><b>{{post.area}}</b> </td>
+                              </tr>
+                              <tr>
+                                <th>Created By:</th>
+                                <td><b>{{post.createdBy}}</b></td>
+                              </tr>
+                              <tr *ngIf="post.isFeatured == true">
+                                <th>Featured:</th>
+                                <td><b>Yes</b></td>
+                              </tr>
+                              <tr *ngIf="post.isFeatured == false">
+                                <th>Featured:</th>
+                                <td><b>No</b></td>
+                              </tr>
+                              <tr *ngIf="post.isFurnished == true">
+                                <th>Furnished:</th>
+                                <td> <b>Yes</b></td>
+                              </tr>
+                              <tr *ngIf="post.isFurnished == false">
+                                <th>Furnished:</th>
+                                <td> <b>No</b></td>
+                              </tr>
+                              <tr>
+                                <th>Purpose:</th>
+                                <td> <b>{{post.purpose}}</b></td>
+                              </tr>
+                              <tr>
+                                <th>Summary:</th>
+                                <td> <b>{{post.summary}}</b></td>
+                              </tr>
+                              <tr>
+                                <th>Purpose:</th>
+                                <td> <b>{{post.purpose}}</b></td>
+                              </tr>
+
+                            </table>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <a (click)="onDelete(post._id)"><button class="btn btn-danger">Remove</button></a>
+                            </div>
+                            <div class="col-md-6">
+                              <a [routerLink]="['/admin/updatepost', post._id]"><button
+                                  class="btn btn-success">Update</button></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+          <!-- /.col -->
+
+          <!-- /.col -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
